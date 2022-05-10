@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Consultório Médico</title>
 </head>
 <body>
     <form>
-        Nome do Paciente: <input type="text" id="iptNome"><br>
+        Nome do Paciente: <input type="text" id="iptNome">
+        <input type="checkbox" id="iptPrioridade" name="nmIptPrioridade"> Prioridade
+        <br>
         <button type="button" onclick="addPaciente()">Adicionar</button>
         <button type="button" onclick="removerPaciente()">Remover</button>
     </form>
