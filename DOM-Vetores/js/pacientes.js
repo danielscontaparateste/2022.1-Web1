@@ -45,3 +45,35 @@ function removerPaciente(){
     document.querySelector('#lista').innerHTML = html;
 }
 
+
+function removerPacientePrioridade(){
+
+    var pos;
+    for (k=0; k<listaPrioridades.length; k++){
+        // if (listaPrioridades[k]==true){
+        if (listaPrioridades[k]){    
+            pos = k;
+            break;
+        }
+    }    
+
+    listaPacientes[pos] = "---";
+    listaPrioridades[pos] = false;
+
+    var html = '<ul>';
+    for (let k =0; k<listaPacientes.length; k++){
+        if (listaPrioridades[k]){
+            html = html + "<li>" + listaPacientes[k] + " <span class='classPrioridade'>(Prioridade)</span>"+"</li>";
+        }else{
+            html = html + "<li>" + listaPacientes[k] + "</li>";
+        }    
+    }
+    html = html + "</ul>";
+
+    document.querySelector('#iptNome').value = '';
+
+    document.querySelector('#lista').innerHTML = html;
+    
+
+}
+
