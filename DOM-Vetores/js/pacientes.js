@@ -23,6 +23,8 @@ function addPaciente(){
     inputPaciente.value = "";
     inputPrioridade.checked = false;
     // inputPrioridade.disabled = true;
+
+    inputPaciente.focus();
 }
 
 function removerPaciente(){
@@ -45,10 +47,9 @@ function removerPaciente(){
     document.querySelector('#lista').innerHTML = html;
 }
 
-
 function removerPacientePrioridade(){
 
-    var pos;
+    var pos=-1;
     for (k=0; k<listaPrioridades.length; k++){
         // if (listaPrioridades[k]==true){
         if (listaPrioridades[k]){    
@@ -57,8 +58,15 @@ function removerPacientePrioridade(){
         }
     }    
 
-    listaPacientes[pos] = "---";
-    listaPrioridades[pos] = false;
+    if (pos==-1){
+        alert("Não existe prioridade");
+    }else{
+        listaPacientes.splice(pos,1);
+        listaPrioridades.splice(pos,1);
+    }
+
+    // listaPacientes[pos] = "---";
+    // listaPrioridades[pos] = false;
 
     var html = '<ul>';
     for (let k =0; k<listaPacientes.length; k++){
