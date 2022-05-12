@@ -4,4 +4,9 @@
     border: 1px solid black;
     background-color: cyan;
     /* float: left; */
+    margin-top: 10px;
+}
+
+.infoBloco{
+    color: red;
 }

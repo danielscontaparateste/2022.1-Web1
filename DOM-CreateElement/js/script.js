@@ -8,9 +8,19 @@ function criarParagrafo(){
 
 
 function criarBlocos(){
-    const bloco = document.createElement("div");
-    bloco.classList.add('box');
+    
+    const inputQuantidade = document.querySelector("#iptQuantidade");
+    const qtd = inputQuantidade.value;
+    
+    for (k = 0; k<qtd; k++){
+        const bloco = document.createElement("div");
+        bloco.classList.add('box');
+        bloco.innerHTML = "<span class='infoBloco'>"+k+"</span>";
+        // Anexar ao body
+        // document.body.appendChild(bloco);
 
-    // Anexar ao body
-    document.body.appendChild(bloco);
+        const body = document.querySelector("body");
+        body.appendChild(bloco);
+    }    
+
 }
