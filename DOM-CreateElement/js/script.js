@@ -12,6 +12,7 @@ function criarBlocos(){
     const inputQuantidade = document.querySelector("#iptQuantidade");
     const qtd = inputQuantidade.value;
     
+    let gtc = "";
     for (let c=0; c<qtd; c++){
         
         for (let k = 0; k<qtd; k++){
@@ -27,8 +28,10 @@ function criarBlocos(){
         }    
         // const quebraLinha = document.createElement("br");
         // jogo.appendChild(quebraLinha);
-
+        gtc = gtc + " auto";
     }
+
+    jogo.style.gridTemplateColumns = gtc;
 
 }
 
