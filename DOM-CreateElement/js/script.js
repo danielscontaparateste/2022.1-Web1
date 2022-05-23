@@ -1,10 +1,10 @@
-var certo = 10;
-
-
+// var corretos = [10, 7, 3];
 function criarBlocos(){
-    
+
     const inputQuantidade = document.querySelector("#iptQuantidade");
     const qtd = inputQuantidade.value;
+
+    var corretos = Array.from({length: 3}, () => Math.floor(Math.random() * (qtd*qtd-1)));
     
     let gtc = "";
     let codCell = 0;
@@ -20,7 +20,7 @@ function criarBlocos(){
             
             // bloco.addEventListener("click", cellClickHandler)
             bloco.addEventListener("click", function() {
-                if (this.value == certo){
+                if (corretos.includes(this.value)){
                     this.style.backgroundColor = "green";
                 }else{
                     this.style.backgroundColor = "red";
@@ -30,6 +30,14 @@ function criarBlocos(){
                 spanClicado = document.querySelector("#spanClicado");
                 spanClicado.innerHTML = this.value;
               });
+
+            bloco.addEventListener("mouseover", function() {
+                this.style.border = "3px solid orange";
+              });  
+            
+            bloco.addEventListener("mouseout", function() {
+                this.style.border = "1px solid black";
+              });  
             
             const jogo = document.querySelector("#jogo");
             jogo.appendChild(bloco);
