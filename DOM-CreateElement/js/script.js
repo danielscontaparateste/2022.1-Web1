@@ -71,7 +71,7 @@ function criarBlocos(){
 
 }
 
-
+//https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
   
