@@ -4,7 +4,9 @@ function criarBlocos(){
     const inputQuantidade = document.querySelector("#iptQuantidade");
     const qtd = inputQuantidade.value;
 
-    var corretos = Array.from({length: 3}, () => Math.floor(Math.random() * (qtd*qtd-1)));
+    // var corretos = Array.from({length: 3}, () => Math.floor(Math.random() * (qtd*qtd-1)));
+    var cartas = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+    cartas = shuffle(cartas);
     
     let gtc = "";
     let codCell = 0;
@@ -13,8 +15,11 @@ function criarBlocos(){
         for (let k = 0; k<qtd; k++){
             const bloco = document.createElement("div");
             bloco.classList.add('box');
-            bloco.innerHTML = "<span class='infoBloco'>"+codCell+"</span>";
-            bloco.value = codCell;
+            bloco.value = cartas[codCell];
+            bloco.innerHTML = "<span class='infoBloco'>"+bloco.value+"</span>";
+            bloco.style.backgroundImage = "url('./imgs/interrogacao.png')";
+            bloco.style.backgroundSize = "contain";
+            
             // bloco.setAttribute("id", k);
             // bloco.onclick = function (){alert("Olá mundo")};
             
@@ -65,4 +70,23 @@ function criarBlocos(){
     jogo.style.gridTemplateColumns = gtc;
 
 }
+
+
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
 
