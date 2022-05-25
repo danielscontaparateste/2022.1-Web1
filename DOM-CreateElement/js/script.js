@@ -58,9 +58,9 @@ function criarBlocos(){
     //     cell.addEventListener("click", cellClickHandler)
     // });
 
-    function cellClickHandler(){
-        alert("OI turma");
-    }
+    // function cellClickHandler(){
+    //     alert("OI turma");
+    // }
     
     // function cellClickHandler(e){
     //     // e.target.classList.toggle("green")
