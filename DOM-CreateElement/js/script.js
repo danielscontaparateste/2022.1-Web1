@@ -1,12 +1,31 @@
 // var corretos = [10, 7, 3];
+
+// const listaImgs = ["./imgs/interrogacao.png",
+// "./imgs/interrogacao.png",
+// "./imgs/interrogacao.png",
+// "./imgs/interrogacao.png"];
+
+
 function criarBlocos(){
 
     const inputQuantidade = document.querySelector("#iptQuantidade");
     const qtd = inputQuantidade.value;
 
+    const jogo = document.querySelector("#jogo");
+    jogo.innerHTML = "";
+
+    const bttGerar = document.querySelector("#bttGerar");
+    bttGerar.innerHTML = "Reiniciar";
+    bttGerar.onclick = function () {
+      alert("Esse jogo esta sendo reiniciado ");
+      criarBlocos();
+    } ;
+
     // var corretos = Array.from({length: 3}, () => Math.floor(Math.random() * (qtd*qtd-1)));
-    var cartas = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+    // var cartas = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+    var cartas = numerosCartas(qtd);
     cartas = shuffle(cartas);
+    // console.log(numerosCartas(qtd));
     
     let gtc = "";
     let codCell = 0;
@@ -30,7 +49,9 @@ function criarBlocos(){
                 }else{
                     this.style.backgroundColor = "red";
                 }
-                                
+                     
+                // this.backgroundImage = listaImgs[this.value];
+
                 //alert(this.value);
                 spanClicado = document.querySelector("#spanClicado");
                 spanClicado.innerHTML = this.value;
@@ -44,7 +65,6 @@ function criarBlocos(){
                 this.style.border = "1px solid black";
               });  
             
-            const jogo = document.querySelector("#jogo");
             jogo.appendChild(bloco);
 
             codCell++;
@@ -52,6 +72,10 @@ function criarBlocos(){
         // const quebraLinha = document.createElement("br");
         // jogo.appendChild(quebraLinha);
         gtc = gtc + " auto";
+    }
+
+    function bttGerarHandler(){
+      alert("Esse jogo foi reiniciado");
     }
 
     // document.querySelectorAll(".box").forEach(cell => {
@@ -70,6 +94,8 @@ function criarBlocos(){
     jogo.style.gridTemplateColumns = gtc;
 
 }
+
+
 
 //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
@@ -90,3 +116,16 @@ function shuffle(array) {
     return array;
   }
 
+
+function numerosCartas(q){
+
+  const array = [];
+  var j = 0;
+  for (let valor=0; valor<q*q/2; valor++){
+    array[j] = valor;
+    j = j +1;
+    array[j] = valor;
+    j = j +1; 
+  }
+  return array;
+}  
