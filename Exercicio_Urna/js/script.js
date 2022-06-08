@@ -28,7 +28,7 @@ function votar(){
             btnVotar.disabled = false;   
         }, 2000);    
     }else{
-        spnMsg.innerHTML = "Por favor, selecione o seu voto. ";
+        spnMsg.innerHTML = "Por favor, selecione o seu candidato. ";
         btnVotar.disabled = false;   
     }
 }
@@ -55,11 +55,18 @@ function resultado(){
 
 }
 
-
-
 function getVencedor(){
    
     const max = Math.max.apply(null, votosCands);
+
+    let count = 0;
+    for (let k=0; k<votosCands.length; k++){
+        if (votosCands[k]==max){
+            count = count + 1;
+        }
+    }
+    if (count > 1) return "Empate";
+
     const idxMax = votosCands.indexOf(max);
     // console.log(max);
     return candidatos[idxMax];
