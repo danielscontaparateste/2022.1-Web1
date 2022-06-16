@@ -7,18 +7,9 @@
     <title>Urna</title>
 </head>
 <body>
-    <p>Quem deve ser o líder da turma? </p>
-    <form>
-        <input type="radio" name="candidatos" value="Jessica" required> Jéssica <br>
-        <input type="radio" name="candidatos" value="Joao"> João Victor <br>
-        <input type="radio" name="candidatos" value="Ismael"> Ismael <br>
-        <hr>
-        <button type="button" onclick="votar()" id="btnVotar">Votar</button> 
-        <button type="button" onclick="resultado()" id="btnResultado">Resultado</button>
-        <span id="regressivo"></span>
-    </form>    
-    <hr>
-    <span id="msg"></span>
+    <div id="telaPrincipal">
+        <button type="button" onclick="iniciarUrna()">Iniciar Votação</button>
+    </div>
 
     <script src="js/script.js"></script>
 </body>

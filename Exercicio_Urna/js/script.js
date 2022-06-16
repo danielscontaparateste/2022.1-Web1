@@ -1,6 +1,6 @@
 
-var candidatos = ['Jessica','Joao Victor','Ismael'];
-var votosCands = [0,0,0];
+var candidatos = ['Jessica','Joao Victor','Jamille','Ismael'];
+var votosCands = [0,0,0,0];
  
 function votar(){
 
@@ -93,7 +93,7 @@ function reiniciar(){
     btnVotar.onclick = function () {
         alert("Essa urna será reiniciada. ");
         // window.location.reload();
-        votosCands = [0,0,0];
+        votosCands = [0,0,0,0];
         const spnMsg = document.getElementById("msg");
         spnMsg.innerHTML = "";
         this.onclick = "";
@@ -121,3 +121,71 @@ function contadorRegressivo(tempo, mostrar){
         spnRegressivo.innerHTML = "";
     }    
 }   
+
+
+function iniciarUrna(){
+    
+    const telaPrincipal = document.querySelector("#telaPrincipal");
+
+    const pergunta = document.createElement("p");
+    pergunta.innerHTML = "Quem deve ser o líder da turma?";
+
+    const form = document.createElement("form");
+
+    for (let k=0; k<candidatos.length;k++){
+        const iptRadio = document.createElement("input");
+        iptRadio.setAttribute("type", "radio");
+        iptRadio.setAttribute("name", "candidatos");
+        iptRadio.setAttribute("value", candidatos[k]);
+        form.appendChild(iptRadio);
+        const label = document.createElement("label");
+        label.innerHTML = candidatos[k];
+        form.appendChild(label);
+        const quebraLinha = document.createElement("br");
+        form.appendChild(quebraLinha);
+    }
+
+    const bttVotar = document.createElement("button");
+    bttVotar.setAttribute("type", "button");
+    bttVotar.setAttribute("id", "btnVotar");
+    bttVotar.innerHTML = "Votar";
+    bttVotar.addEventListener("click",votar);
+
+    const bttRes = document.createElement("button");
+    bttRes.setAttribute("type", "button");
+    bttRes.setAttribute("id", "btnResultado");
+    bttRes.innerHTML = "Resultado";
+    bttRes.addEventListener("click",resultado);
+
+    form.appendChild(bttVotar);
+    form.appendChild(bttRes);
+
+    const msg = document.createElement("span");
+    msg.setAttribute("id", "msg");
+
+    const regressivo = document.createElement("span");
+    
+    
+    const hr = document.createElement("hr");
+    
+    telaPrincipal.appendChild(pergunta);
+    telaPrincipal.appendChild(form);
+    regressivo.setAttribute("id", "regressivo");
+    telaPrincipal.appendChild(hr);
+    telaPrincipal.appendChild(msg);
+    telaPrincipal.appendChild(regressivo);
+    
+
+    // <p> </p>
+    // <form>
+    //     <input type="radio" name="candidatos" value="Jessica" required> Jéssica <br>
+    //     <input type="radio" name="candidatos" value="Joao"> João Victor <br>
+    //     <input type="radio" name="candidatos" value="Ismael"> Ismael <br>
+    //     <hr>
+    //     <button type="button" onclick="votar()" id="btnVotar">Votar</button> 
+    //     <button type="button" onclick="resultado()" id="btnResultado">Resultado</button>
+    //     <span id="regressivo"></span>
+    // </form>    
+    // <hr>
+    // <span id="msg"></span>
+}
