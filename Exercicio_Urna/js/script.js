@@ -1,5 +1,5 @@
 
-var candidatos = ['Jessica','Joao Victor','Jamille','Ismael','Gabriel'];
+var candidatos = [];
 var votosCands = [];
  
 function votar(){
@@ -131,6 +131,19 @@ function zerarVotos(){
 
 
 function iniciarUrna(){
+
+    let text = '{"candidatos":[' +
+        '{"nome":"Jamile","idade":"18"},' +
+        '{"nome":"Gabriel","idade":"20" },' +
+        '{"nome":"Joao","idade":"30" },' +
+        '{"nome":"Jessica","idade":"15" }]}';
+
+    const objCandidatos = JSON.parse(text);
+
+    for (let k=0; k<objCandidatos.candidatos.length; k++){
+        candidatos[k] = objCandidatos.candidatos[k].nome;
+    }
+
     zerarVotos();
 
     const telaPrincipal = document.querySelector("#telaPrincipal");
