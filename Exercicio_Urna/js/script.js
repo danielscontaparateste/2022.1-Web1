@@ -1,6 +1,6 @@
 
-var candidatos = ['Jessica','Joao Victor','Jamille','Ismael'];
-var votosCands = [0,0,0,0];
+var candidatos = ['Jessica','Joao Victor','Jamille','Ismael','Gabriel'];
+var votosCands = [];
  
 function votar(){
 
@@ -93,7 +93,7 @@ function reiniciar(){
     btnVotar.onclick = function () {
         alert("Essa urna será reiniciada. ");
         // window.location.reload();
-        votosCands = [0,0,0,0];
+        zerarVotos();
         const spnMsg = document.getElementById("msg");
         spnMsg.innerHTML = "";
         this.onclick = "";
@@ -122,9 +122,17 @@ function contadorRegressivo(tempo, mostrar){
     }    
 }   
 
+function zerarVotos(){
+    // Vetor com a quantidade de votos de cada candidado
+    for (let k=0; k< candidatos.length; k++){
+        votosCands[k] = 0;
+    }
+}
+
 
 function iniciarUrna(){
-    
+    zerarVotos();
+
     const telaPrincipal = document.querySelector("#telaPrincipal");
 
     const pergunta = document.createElement("p");
@@ -175,17 +183,7 @@ function iniciarUrna(){
     telaPrincipal.appendChild(msg);
     telaPrincipal.appendChild(regressivo);
     
+    bttIniciarUrna = document.querySelector("#btnInicializarUrna");
+    bttIniciarUrna.remove();
 
-    // <p> </p>
-    // <form>
-    //     <input type="radio" name="candidatos" value="Jessica" required> Jéssica <br>
-    //     <input type="radio" name="candidatos" value="Joao"> João Victor <br>
-    //     <input type="radio" name="candidatos" value="Ismael"> Ismael <br>
-    //     <hr>
-    //     <button type="button" onclick="votar()" id="btnVotar">Votar</button> 
-    //     <button type="button" onclick="resultado()" id="btnResultado">Resultado</button>
-    //     <span id="regressivo"></span>
-    // </form>    
-    // <hr>
-    // <span id="msg"></span>
 }
