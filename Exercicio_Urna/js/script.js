@@ -1,4 +1,3 @@
-
 var candidatos = [];
 var votosCands = [];
  
@@ -132,71 +131,88 @@ function zerarVotos(){
 
 function iniciarUrna(){
 
-    let text = '{"candidatos":[' +
-        '{"nome":"Jamile","idade":"18"},' +
-        '{"nome":"Gabriel","idade":"20" },' +
-        '{"nome":"Joao","idade":"30" },' +
-        '{"nome":"Jessica","idade":"15" }]}';
+    // let text = '{"candidatos":[' +
+    //     '{"nome":"Jamile","idade":"18"},' +
+    //     '{"nome":"Gabriel","idade":"20" },' +
+    //     '{"nome":"Joao","idade":"30" },' +
+    //     '{"nome":"Jessica","idade":"15" }]}';
 
-    const objCandidatos = JSON.parse(text);
+    // const objCandidatos = JSON.parse(text);
+    
+    readTextFile("../candidatos.json", function(text){
+        var objCandidatos = JSON.parse(text);
+        console.log(objCandidatos);
 
-    for (let k=0; k<objCandidatos.candidatos.length; k++){
-        candidatos[k] = objCandidatos.candidatos[k].nome;
+        for (let k=0; k<objCandidatos.candidatos.length; k++){
+            candidatos[k] = objCandidatos.candidatos[k].nome;
+        }
+        zerarVotos();
+
+        const telaPrincipal = document.querySelector("#telaPrincipal");
+
+        const pergunta = document.createElement("p");
+        pergunta.innerHTML = "Quem deve ser o líder da turma?";
+
+        const form = document.createElement("form");
+
+        for (let k=0; k<candidatos.length;k++){
+            const iptRadio = document.createElement("input");
+            iptRadio.setAttribute("type", "radio");
+            iptRadio.setAttribute("name", "candidatos");
+            iptRadio.setAttribute("value", candidatos[k]);
+            form.appendChild(iptRadio);
+            const label = document.createElement("label");
+            label.innerHTML = candidatos[k];
+            form.appendChild(label);
+            const quebraLinha = document.createElement("br");
+            form.appendChild(quebraLinha);
+        }
+
+        const bttVotar = document.createElement("button");
+        bttVotar.setAttribute("type", "button");
+        bttVotar.setAttribute("id", "btnVotar");
+        bttVotar.innerHTML = "Votar";
+        bttVotar.addEventListener("click",votar);
+
+        const bttRes = document.createElement("button");
+        bttRes.setAttribute("type", "button");
+        bttRes.setAttribute("id", "btnResultado");
+        bttRes.innerHTML = "Resultado";
+        bttRes.addEventListener("click",resultado);
+
+        form.appendChild(bttVotar);
+        form.appendChild(bttRes);
+
+        const msg = document.createElement("span");
+        msg.setAttribute("id", "msg");
+
+        const regressivo = document.createElement("span");
+        
+        
+        const hr = document.createElement("hr");
+        
+        telaPrincipal.appendChild(pergunta);
+        telaPrincipal.appendChild(form);
+        regressivo.setAttribute("id", "regressivo");
+        telaPrincipal.appendChild(hr);
+        telaPrincipal.appendChild(msg);
+        telaPrincipal.appendChild(regressivo);
+        
+        bttIniciarUrna = document.querySelector("#btnInicializarUrna");
+        bttIniciarUrna.remove();
+    } )        
+    
+}
+
+/* https://stackoverflow.com/questions/19706046/how-to-read-an-external-local-json-file-in-javascript */
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
     }
-
-    zerarVotos();
-
-    const telaPrincipal = document.querySelector("#telaPrincipal");
-
-    const pergunta = document.createElement("p");
-    pergunta.innerHTML = "Quem deve ser o líder da turma?";
-
-    const form = document.createElement("form");
-
-    for (let k=0; k<candidatos.length;k++){
-        const iptRadio = document.createElement("input");
-        iptRadio.setAttribute("type", "radio");
-        iptRadio.setAttribute("name", "candidatos");
-        iptRadio.setAttribute("value", candidatos[k]);
-        form.appendChild(iptRadio);
-        const label = document.createElement("label");
-        label.innerHTML = candidatos[k];
-        form.appendChild(label);
-        const quebraLinha = document.createElement("br");
-        form.appendChild(quebraLinha);
-    }
-
-    const bttVotar = document.createElement("button");
-    bttVotar.setAttribute("type", "button");
-    bttVotar.setAttribute("id", "btnVotar");
-    bttVotar.innerHTML = "Votar";
-    bttVotar.addEventListener("click",votar);
-
-    const bttRes = document.createElement("button");
-    bttRes.setAttribute("type", "button");
-    bttRes.setAttribute("id", "btnResultado");
-    bttRes.innerHTML = "Resultado";
-    bttRes.addEventListener("click",resultado);
-
-    form.appendChild(bttVotar);
-    form.appendChild(bttRes);
-
-    const msg = document.createElement("span");
-    msg.setAttribute("id", "msg");
-
-    const regressivo = document.createElement("span");
-    
-    
-    const hr = document.createElement("hr");
-    
-    telaPrincipal.appendChild(pergunta);
-    telaPrincipal.appendChild(form);
-    regressivo.setAttribute("id", "regressivo");
-    telaPrincipal.appendChild(hr);
-    telaPrincipal.appendChild(msg);
-    telaPrincipal.appendChild(regressivo);
-    
-    bttIniciarUrna = document.querySelector("#btnInicializarUrna");
-    bttIniciarUrna.remove();
-
+    rawFile.send(null);
 }
