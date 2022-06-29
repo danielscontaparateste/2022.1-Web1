@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usando o elemento range</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="controle">
+        <label>Dimensões</label><br>
+        Largura: <input id="iptLargura" oninput="alterarLargura()" type="range" min="0" max="100" value="10">
+        <label id="lblLargura"> </label> <br>
+        Altura: <input id="iptAltura" oninput="alterarAltura()" type="range" min="0" max="100">
+        <label id="lblAltura"> </label>
+    </div>
+    <hr>
+    <div id="box"></div>
+    <script src="js/script.js"></script>
+</body>
+</html>
